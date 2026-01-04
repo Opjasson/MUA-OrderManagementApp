@@ -4,4 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bold_pink">#F83758</color>
     <color name="sea_blue">#4392F9</color>
+    <color name="bold_cream">#A8A8A9</color>
+    <color name="light_cream">#EAE5E5</color>
+    <color name="mediumBold_cream">#676767</color>
+    <color name="hardBold_cream">#626262</color>
 </resources>
