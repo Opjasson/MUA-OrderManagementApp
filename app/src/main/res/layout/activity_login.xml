@@ -80,7 +80,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/forgotPassTxt2"
+            android:id="@+id/L_gotoRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

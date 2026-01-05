@@ -1,5 +1,6 @@
 package com.example.bentingbeautyapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,5 +23,10 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
+        binding.apply {
+            LGotoRegister.setOnClickListener {
+                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            }
+        }
     }
 }
