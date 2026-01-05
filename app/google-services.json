@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "103017244330",
+    "project_id": "mua1234422",
+    "storage_bucket": "mua1234422.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103017244330:android:532053dd6283082af912d3",
+        "android_client_info": {
+          "package_name": "com.example.bentingbeautyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq_zkLiip-EYIT38B1K-YlDG1l8hpbCEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
