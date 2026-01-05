@@ -45,7 +45,7 @@
             android:inputType="text"
             android:padding="16dp"
             android:textColor="@color/mediumBold_cream"
-            tools:layout_marginTop="32dp" />
+            tools:layout_marginTop="40dp" />
 
         <EditText
             android:id="@+id/passwordForm"
