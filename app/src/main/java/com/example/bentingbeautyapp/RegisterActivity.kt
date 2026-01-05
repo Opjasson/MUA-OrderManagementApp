@@ -1,5 +1,6 @@
 package com.example.bentingbeautyapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,10 +16,17 @@ class RegisterActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.apply {
+            RGotoLogin.setOnClickListener {
+                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+            }
         }
     }
 }

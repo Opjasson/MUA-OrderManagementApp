@@ -59,7 +59,7 @@
             android:textColor="@color/mediumBold_cream" />
 
         <EditText
-            android:id="@+id/passwordForm2"
+            android:id="@+id/confPasswordForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -71,7 +71,7 @@
             android:textColor="@color/mediumBold_cream" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/registBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
@@ -82,11 +82,11 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/forgotPassTxt2"
+            android:id="@+id/R_gotoLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Have An Account ? Login Here"
+            android:text="Already Have An Account ? Login Here"
             android:textAlignment="center"
             android:textColor="@color/bold_pink" />
     </LinearLayout>
