@@ -8,6 +8,21 @@ import com.example.bentingbeautyapp.Repository.AuthRepository
 class AuthViewModel: ViewModel() {
     private val repository = AuthRepository()
 
+//  Login Model
+    private val _loginResult = MutableLiveData<Result<String>>()
+    val loginResult : LiveData<Result<String>> = _loginResult
+
+    fun login(email: String, password: String) {
+        repository.loginAuth(email, password) {
+            success, message ->
+                if (success) {
+                    _loginResult.value = Result.success("Login Berhasil")
+                }else {
+                    _loginResult.value = Result.failure(Exception(message))
+                }
+            }
+    }
+
 //  Register Model
     private val _regisResult = MutableLiveData<Result<String>>()
     val registResult: LiveData<Result<String>> = _regisResult
