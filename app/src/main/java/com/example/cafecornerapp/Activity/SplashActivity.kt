@@ -1,4 +1,4 @@
-package com.example.bentingbeautyapp.Activity
+package com.example.cafecornerapp.Activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.bentingbeautyapp.R
-import com.example.bentingbeautyapp.databinding.ActivitySplashBinding
+import com.example.cafecornerapp.R
+import com.example.cafecornerapp.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding

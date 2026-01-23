@@ -1,4 +1,4 @@
-package com.example.bentingbeautyapp
+package com.example.cafecornerapp
 
 import org.junit.Test
 

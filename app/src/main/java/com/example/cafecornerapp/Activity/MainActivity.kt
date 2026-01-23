@@ -1,11 +1,11 @@
-package com.example.bentingbeautyapp.Activity
+package com.example.cafecornerapp.Activity
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.bentingbeautyapp.R
+import com.example.cafecornerapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

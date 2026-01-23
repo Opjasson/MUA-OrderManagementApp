@@ -1,7 +1,5 @@
-package com.example.bentingbeautyapp.Repository
+package com.example.cafecornerapp.Repository
 
-import android.util.Log
-import com.google.android.gms.common.api.internal.StatusCallback
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -13,7 +11,8 @@ class AuthRepository {
 fun loginAuth (
     email : String,
     password : String,
-    onResult: (Boolean, String?) -> Unit) {
+    onResult: (Boolean, String?) -> Unit
+    ) {
 
     auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
         onResult(true, null)

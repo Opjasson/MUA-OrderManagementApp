@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.bentingbeautyapp"
+    namespace = "com.example.cafecornerapp"
     compileSdk {
         version = release(36)
     }

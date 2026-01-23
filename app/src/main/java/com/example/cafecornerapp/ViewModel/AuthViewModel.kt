@@ -1,9 +1,9 @@
-package com.example.bentingbeautyapp.ViewModel
+package com.example.cafecornerapp.ViewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.bentingbeautyapp.Repository.AuthRepository
+import com.example.cafecornerapp.Repository.AuthRepository
 
 class AuthViewModel: ViewModel() {
     private val repository = AuthRepository()
