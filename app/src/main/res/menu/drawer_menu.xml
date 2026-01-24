@@ -13,5 +13,20 @@
     <item
         android:id="@+id/menu_history"
         android:title="History Order"
+        android:icon="@drawable/transactionhistory"/>
+
+    <item
+        android:id="@+id/menu_manageProduct"
+        android:title="Manage Product"
         android:icon="@drawable/supplychain"/>
+
+    <item
+        android:id="@+id/menu_laporan"
+        android:title="Report"
+        android:icon="@drawable/print"/>
+
+    <item
+        android:id="@+id/menu_manageUser"
+        android:title="Manage User"
+        android:icon="@drawable/profile"/>
 </menu>
