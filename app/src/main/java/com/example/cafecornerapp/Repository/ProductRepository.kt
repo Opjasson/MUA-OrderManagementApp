@@ -13,7 +13,7 @@ class ProductRepository : ViewModel() {
         kategori_product: String,
         imgUrl: String,
         promo: Boolean,
-        onResult: (Boolean, String) -> Unit
+        onResult: (Boolean) -> Unit
     ) {
         var data = mapOf(
             "nama_product" to nama_product,
@@ -24,14 +24,13 @@ class ProductRepository : ViewModel() {
             "promo" to kategoriId,
             "createdAt" to Timestamp.now()
         )
-        database.collection("items")
+        database.collection("product")
             .add(data)
             .addOnSuccessListener {
-                    documentRef ->
-                onResult(true, documentRef.id)
+                onResult(true)
             }
             .addOnFailureListener {
-                onResult(false, "")
+                onResult(false)
             }
     }
 }
