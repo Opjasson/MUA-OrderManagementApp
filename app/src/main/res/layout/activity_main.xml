@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_cream"
     tools:context=".Activity.MainActivity">
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -22,16 +23,149 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="Dashboard"/>
+                app:title="Dashboard" />
 
             <FrameLayout
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TextView
+
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Hallo world" />
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- HEADER -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tegal, Indonesia"
+                                    android:textColor="#777777"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Good Morning, Robi"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/usercolor" />
+
+                        </LinearLayout>
+
+                        <!-- SEARCH -->
+
+                        <!-- CATEGORIES -->
+
+                        <EditText
+                            android:id="@+id/editTextText"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@drawable/form_circular_rectangle"
+                            android:drawableStart="@drawable/toggle"
+                            android:drawablePadding="8dp"
+                            android:hint="Search"
+                            android:inputType="text"
+                            android:paddingStart="8dp"
+                            android:textColor="@color/hardBold_cream" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Categories"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="#2E7D32"
+                                android:text="Makanan"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/white" />
+
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="#E0E0E0"
+                                android:text="Minuman"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/black" />
+                        </LinearLayout>
+
+                        <!-- NEW TRANSAKSI -->
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="#1E40FF"
+                            android:text="New Transaksi"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            app:iconTint="@android:color/white" />
+
+                        <!-- MENU RECYCLER -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:nestedScrollingEnabled="false"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="2" />
+
+                        <!-- SPECIAL OFFER -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Special Offer"
+                            android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvSpecial"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:nestedScrollingEnabled="false"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            />
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
             </FrameLayout>
         </LinearLayout>
 
