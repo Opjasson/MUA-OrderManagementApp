@@ -2,17 +2,22 @@ package com.example.cafecornerapp.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.cafecornerapp.Adapter.CardProductAdapter
 import com.example.cafecornerapp.R
+import com.example.cafecornerapp.ViewModel.ProductViewModel
 import com.example.cafecornerapp.databinding.ActivityManageProductBinding
 
 class ManageProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivityManageProductBinding
+    private val viewModel = ProductViewModel()
 
     private lateinit var drawerLayout: DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,5 +76,15 @@ class ManageProductActivity : AppCompatActivity() {
         binding.tambahProductBtn.setOnClickListener {
             startActivity(Intent(this, TambahProductActivity::class.java))
         }
+
+        binding.MPLoadProduct.visibility= View.VISIBLE
+        viewModel.searchResult.observe(this) {
+            list ->
+            binding.MPproductView.layoutManager= GridLayoutManager(this, 2)
+            binding.MPproductView.adapter= CardProductAdapter(list.toMutableList())
+            binding.MPLoadProduct.visibility= View.GONE
+        }
+
+        viewModel.loadAllItems()
     }
 }
