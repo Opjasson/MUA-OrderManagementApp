@@ -1,5 +1,6 @@
 package com.example.cafecornerapp.Domain
 
+import com.google.firebase.Timestamp
 import java.io.Serializable
 
 data class ProductModel(
@@ -9,4 +10,5 @@ data class ProductModel(
     var imgUrl : String = "",
     var kategori_product : String = "",
     var promo : Boolean = false,
+    var createdAt : String = ""
 ) : Serializable
