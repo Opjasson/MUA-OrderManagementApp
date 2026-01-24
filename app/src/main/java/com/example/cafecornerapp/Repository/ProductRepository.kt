@@ -7,7 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ProductRepository {
     private val database = FirebaseFirestore.getInstance()
-    private lateinit var convertDate : ConvertDateTime()
+    private val convertDate = ConvertDateTime()
 
     //    Add item
     fun createItem(
@@ -22,10 +22,10 @@ class ProductRepository {
         var data = mapOf(
             "nama_product" to nama_product,
             "deskripsi_product" to deskripsi_product,
-            "harga_product" to ,
-            "kategori_product" to popular,
+            "harga_product" to harga_product,
+            "kategori_product" to kategori_product,
             "imgUrl" to imgUrl,
-            "promo" to kategoriId,
+            "promo" to promo,
             "createdAt" to convertDate.formatTimestamp(Timestamp.now())
         )
         database.collection("product")

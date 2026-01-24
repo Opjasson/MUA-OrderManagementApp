@@ -12,11 +12,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.example.cafecornerapp.R
+import com.example.cafecornerapp.ViewModel.ProductViewModel
 import com.example.cafecornerapp.databinding.ActivityTambahProductBinding
 
 
 class TambahProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTambahProductBinding
+    private var viewModel = ProductViewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,6 +38,8 @@ class TambahProductActivity : AppCompatActivity() {
     private fun initFormCreate () {
         binding.picItem.visibility = View.GONE
 
+        var imgUrl : String = ""
+
         val pickImage =
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
                 Log.d("URL", uri.toString())
@@ -48,32 +53,19 @@ class TambahProductActivity : AppCompatActivity() {
             imgUrl = it.toString()
         }
 
-        var popular = ""
+        var kategori = ""
         var kategoriId : String = ""
 
 //        show data config
-        binding.plusBtn.setOnClickListener {
-            val current = binding.ADMJumlahBarangForm.text.toString().toIntOrNull() ?: 0
-            val newJumlah = current + 1
-            binding.ADMJumlahBarangForm.setText(newJumlah.toString())
-        }
-        binding.minBtn.setOnClickListener {
-            val current = binding.ADMJumlahBarangForm.text.toString().toIntOrNull() ?: 0
-            val newJumlah = current - 1
-            binding.ADMJumlahBarangForm.setText(newJumlah.toString())
-        }
 
-        binding.ADMPicItem.visibility = View.GONE
-        binding.gambarBarangBtn.setOnClickListener {
-            binding.ADMPicItem.visibility = View.VISIBLE
+        binding.gambarBarangForm.setOnClickListener {
+            binding.picItem.visibility = View.VISIBLE
             pickImage.launch("image/*")
         }
 
         viewModel.createStatus.observe(this){
-                documentId ->
-            if (!documentId.isEmpty()) {
-                viewModel.addStokAwal(documentId,
-                    binding.ADMJumlahBarangForm.text.toString().toLong())
+            success ->
+            if (success) {
                 Toast.makeText(this, "Data berhasil dibuat", Toast.LENGTH_SHORT).show()
                 finish()
             }
@@ -81,7 +73,7 @@ class TambahProductActivity : AppCompatActivity() {
 
 
 //    Setting drop down
-        val items = listOf("Populer", "Tidak")
+        val items = listOf("minuman", "makanan")
 
         val adapter = ArrayAdapter(
             this,
@@ -99,11 +91,11 @@ class TambahProductActivity : AppCompatActivity() {
 
         binding.dropdownMenu.setOnItemClickListener { _, _, position, _ ->
             val selected = items[position]
-            popular = selected
+            kategori = selected
         }
 
         //    Setting drop down 2
-        val items2 = listOf("Alat Makan", "Alat Cuci", "Alat Masak")
+        val items2 = listOf("Ya", "Tidak")
 
         val adapter2 = ArrayAdapter(
             this,
@@ -123,22 +115,20 @@ class TambahProductActivity : AppCompatActivity() {
             val selected2 = items2[position]
             kategoriId = selected2
 
-            var kategoriId2 : Long = 0
+            var kategoriId2 : Boolean = false
 
-            if (kategoriId == "Alat Makan") {
-                kategoriId2 = 2
-            }else if (kategoriId == "Alat Cuci") {
-                kategoriId2 = 1
+            if (kategoriId == "Ya") {
+                kategoriId2 = true
             }else {
-                kategoriId2 = 0
+                kategoriId2 = false
             }
 
-            binding.addItemBtn.setOnClickListener {
+            binding.addProductBtn.setOnClickListener {
                 viewModel.createItem(
-                    binding.ADMNamaItemForm.text.toString().toLowerCase(),
-                    binding.ADMDescEdt.text.toString(),
-                    binding.ADMJumlahBarangForm.text.toString().toLong(),
-                    if (popular == "Populer") true else false,
+                    binding.nameItemFormTxt.text.toString().toLowerCase(),
+                    binding.descEdt.text.toString(),
+                    binding.hargaItemFormTxt.text.toString().toLong(),
+                    kategori,
                     imgUrl,
                     kategoriId2,
                 )
