@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.legacy.support.v4)
+    implementation("com.google.android.material:material:1.11.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -75,7 +75,7 @@
                             android:background="@drawable/form_circular_rectangle"
                             android:hint="Deskripsi Product"
                             android:textColorHint="@color/hardBold_cream"
-                            app:boxBackgroundMode="none"
+                            app:boxBackgroundMode="outline"
                             app:boxCornerRadiusBottomEnd="12dp"
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
@@ -98,20 +98,18 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="16dp"
                             android:background="@drawable/form_circular_rectangle"
-                            android:hint="Kategori Product"
+                            android:hint="Pilih Kategori"
                             android:padding="8dp"
                             android:textColorHint="@color/hardBold_cream"
-                            app:boxBackgroundMode="none"
+                            app:boxBackgroundMode="outline"
                             app:endIconMode="dropdown_menu">
 
                             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                                 android:id="@+id/dropdownMenu"
                                 android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:hint="Kategori Product"
+                                android:layout_height="40dp"
                                 android:inputType="none"
-                                android:paddingStart="8dp"
-                                android:textColor="@color/hardBold_cream" />
+                                android:paddingStart="8dp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -123,17 +121,15 @@
                             android:hint="Promo"
                             android:padding="8dp"
                             android:textColorHint="@color/hardBold_cream"
-                            app:boxBackgroundMode="none"
+                            app:boxBackgroundMode="outline"
                             app:endIconMode="dropdown_menu">
 
                             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                                 android:id="@+id/dropdownMenu2"
                                 android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:hint="Promo"
+                                android:layout_height="40dp"
                                 android:inputType="none"
-                                android:paddingStart="8dp"
-                                android:textColor="@color/hardBold_cream" />
+                                android:paddingStart="8dp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <androidx.appcompat.widget.AppCompatButton

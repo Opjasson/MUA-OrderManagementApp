@@ -28,6 +28,7 @@ class ManageProductActivity : AppCompatActivity() {
         }
 
         initSideBar()
+        initManageProduct()
     }
 
     private fun initSideBar () {
@@ -63,6 +64,12 @@ class ManageProductActivity : AppCompatActivity() {
             }
             drawerLayout.closeDrawers()
             true
+        }
+    }
+
+    private fun initManageProduct () {
+        binding.tambahProductBtn.setOnClickListener {
+            startActivity(Intent(this, TambahProductActivity::class.java))
         }
     }
 }
