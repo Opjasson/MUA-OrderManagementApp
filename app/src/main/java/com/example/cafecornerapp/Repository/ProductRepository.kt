@@ -2,6 +2,7 @@ package com.example.cafecornerapp.Repository
 
 import androidx.lifecycle.ViewModel
 import com.example.cafecornerapp.Adapter.ConvertDateTime
+import com.example.cafecornerapp.Domain.ProductModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -35,6 +36,20 @@ class ProductRepository {
             }
             .addOnFailureListener {
                 onResult(false)
+            }
+    }
+
+    //    Get all product
+    fun getAllItems(callback: (List<ProductModel>) -> Unit) {
+        database.collection("items")
+            .get()
+            .addOnSuccessListener { snapshots ->
+                val list = snapshots.documents.mapNotNull { doc ->
+                    doc.toObject(ItemsModel::class.java)?.apply {
+                        documentId = doc.id   // 🔥 isi documentId
+                    }
+                }
+                callback(list)
             }
     }
 }
