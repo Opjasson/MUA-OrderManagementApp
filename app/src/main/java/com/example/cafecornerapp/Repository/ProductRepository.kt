@@ -1,9 +1,12 @@
 package com.example.cafecornerapp.Repository
 
 import androidx.lifecycle.ViewModel
+import com.example.cafecornerapp.Adapter.ConvertDateTime
 import com.google.firebase.Timestamp
 
 class ProductRepository : ViewModel() {
+
+    private lateinit var convertDate : ConvertDateTime()
 
     //    Add item
     fun createItem(
@@ -22,7 +25,7 @@ class ProductRepository : ViewModel() {
             "kategori_product" to popular,
             "imgUrl" to imgUrl,
             "promo" to kategoriId,
-            "createdAt" to Timestamp.now()
+            "createdAt" to convertDate.formatTimestamp(Timestamp.now())
         )
         database.collection("product")
             .add(data)
