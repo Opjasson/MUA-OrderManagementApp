@@ -10,4 +10,6 @@
     <color name="hardBold_cream">#626262</color>
     <color name="orange">#f69724</color>
     <color name="brown">#f0dba1</color>
+    <color name="btnoff">#E0E0E0</color>
+    <color name="btnon">#2E7D32</color>
 </resources>

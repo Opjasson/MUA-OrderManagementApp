@@ -1,12 +1,14 @@
 package com.example.cafecornerapp.Activity
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
@@ -41,15 +43,50 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initShowProduct () {
-        var kategori : String = ""
-
+        var kategori : String = "makanan"
+        viewModel.getProductByKategori(kategori)
         binding.makananBtn.setOnClickListener {
             kategori = "makanan"
+            binding.makananBtn.backgroundTintList = ColorStateList
+                .valueOf(ContextCompat
+                    .getColor(this, R.color.btnon))
+
+            binding.makananBtn.setTextColor(
+                ContextCompat
+                    .getColor(this, R.color.white)
+            )
+
+            binding.minumanBtn.backgroundTintList = ColorStateList
+                .valueOf(ContextCompat
+                    .getColor(this, R.color.btnoff))
+
+            binding.minumanBtn.setTextColor(
+                ContextCompat
+                    .getColor(this, R.color.black)
+            )
             viewModel.getProductByKategori(kategori)
         }
 
         binding.minumanBtn.setOnClickListener {
             kategori = "minuman"
+            binding.makananBtn.backgroundTintList = ColorStateList
+                .valueOf(ContextCompat
+                    .getColor(this, R.color.btnoff))
+
+            binding.makananBtn.setTextColor(
+                ContextCompat
+                    .getColor(this, R.color.black)
+            )
+
+            binding.minumanBtn.backgroundTintList = ColorStateList
+                .valueOf(ContextCompat
+                    .getColor(this, R.color.btnon))
+
+            binding.minumanBtn.setTextColor(
+                ContextCompat
+                    .getColor(this, R.color.white)
+            )
+
             viewModel.getProductByKategori(kategori)
         }
 
