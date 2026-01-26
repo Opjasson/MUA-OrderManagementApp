@@ -7,6 +7,12 @@ class AuthRepository {
     private val database = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
+
+// handle get user login
+    fun getCurrentUserId() : String? {
+        return auth.currentUser?.uid
+    }
+
 //    Login Repository
 fun loginAuth (
     email : String,

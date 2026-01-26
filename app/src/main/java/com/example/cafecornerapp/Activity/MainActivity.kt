@@ -18,11 +18,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cafecornerapp.Adapter.CardProductlistAdapter
 import com.example.cafecornerapp.R
 import com.example.cafecornerapp.ViewModel.ProductViewModel
+import com.example.cafecornerapp.ViewModel.TransaksiViewModel
+import com.example.cafecornerapp.ViewModel.UserViewModel
 import com.example.cafecornerapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
+
+    private val userViewModel = UserViewModel()
+
+    private val viewModelTransaksi = TransaksiViewModel()
 
     private val viewModel = ProductViewModel()
 
@@ -44,6 +50,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initShowProduct () {
+//        create new transaksi
+
+        userViewModel.getUserByUid()
+
+        userViewModel.userLogin.observe(this) { user ->
+            user?.let {
+                binding.usernameTxt.text = "Good morning, " + it.username
+            }
+        }
+//        binding.transaksiBtn.setOnClickListener {
+//            viewModelTransaksi.createTransaksi()
+//        }
+
         var kategori : String = "makanan"
         viewModel.getProductByKategori(kategori)
 

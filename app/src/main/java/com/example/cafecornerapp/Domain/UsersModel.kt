@@ -2,7 +2,7 @@ package com.example.cafecornerapp.Domain
 
 import java.io.Serializable
 
-data class Users(
+data class UsersModel(
     var email : String = "",
     var username : String = ""
 ) : Serializable

@@ -63,9 +63,10 @@
                                     android:textSize="12sp" />
 
                                 <TextView
+                                    android:id="@+id/usernameTxt"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Good Morning, Robi"
+                                    android:text="Good Morning, name"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
                             </LinearLayout>
@@ -130,6 +131,7 @@
 
                         <!-- NEW TRANSAKSI -->
                         <Button
+                            android:id="@+id/transaksiBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_marginTop="16dp"
