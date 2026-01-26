@@ -43,6 +43,12 @@
                         android:paddingEnd="16dp">
 
                         <!-- RecyclerView Cart -->
+                        <ProgressBar
+                            android:id="@+id/loadCart"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvCart"
                             android:layout_width="match_parent"

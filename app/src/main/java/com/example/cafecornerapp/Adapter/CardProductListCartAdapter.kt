@@ -10,28 +10,31 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cafecornerapp.Activity.MainActivity
+import com.example.cafecornerapp.Domain.CartModel
 import com.example.cafecornerapp.Domain.ProductModel
 import com.example.cafecornerapp.ViewModel.CartViewModel
-import com.example.cafecornerapp.databinding.ViewHolderCardproductBinding
+import com.example.cafecornerapp.databinding.ViewHolderCardcartBinding
+import com.example.cafecornerapp.databinding.ViewHolderCardproductListBinding
 
-class CardProductListCartAdapter(val items: MutableList<ProductModel>):
+
+class CardProductListCartAdapter(val items: MutableList<CartModel>):
     RecyclerView.Adapter<CardProductListCartAdapter.Viewholder>() {
     private val viewModel = CartViewModel()
     lateinit var context: Context
-    class Viewholder(val binding: ViewHolderCardproductBinding):
+    class Viewholder(val binding: ViewHolderCardcartBinding):
         RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardProductListCartAdapter.Viewholder {
         context= parent.context
-        val binding = ViewHolderCardproductBinding.
+        val binding = ViewHolderCardcartBinding.
         inflate(LayoutInflater.from(context),parent,false)
         return Viewholder(binding)
     }
 
-    override fun onBindViewHolder(holder: CardProductAdapter.Viewholder, position: Int) {
-        holder.binding.titleTxt.text= items[position].nama_product
+    override fun onBindViewHolder(holder: CardProductListCartAdapter.Viewholder, position: Int) {
+        holder.binding.tvNamaMenu.text= items[position].productId
             .replaceFirstChar { it.uppercase() }
-        holder.binding.priceTxt.text="$"+items[position].harga_product.toString()
-        holder.binding.subtitleTxt.text= items[position].deskripsi_product.toString().take(50)
+        holder.binding.tvHarga.text="$"+items[position].transaksiId.toString()
+        holder.binding.tvKategori.text= items[position].jumlah.toString().take(50)
             .replaceFirstChar { it.uppercase() } + "..."
 
         Glide.with(context).load(items[position].imgUrl).into(holder.binding.pic)

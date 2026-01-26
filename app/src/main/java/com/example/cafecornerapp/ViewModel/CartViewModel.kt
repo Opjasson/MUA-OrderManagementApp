@@ -1,8 +1,11 @@
 package com.example.cafecornerapp.ViewModel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.cafecornerapp.Domain.CartModel
+import com.example.cafecornerapp.Domain.ProductModel
 import com.example.cafecornerapp.Repository.CartRepository
 
 class CartViewModel : ViewModel() {
@@ -29,6 +32,16 @@ class CartViewModel : ViewModel() {
             }else {
                 Log.d("FAILEDCREATE", "FAILED-CREATE ITEM")
             }
+        }
+    }
+
+    //    get product by kategori
+    private val _cartResult = MutableLiveData<List<CartModel>>()
+    val cartResult: LiveData<List<CartModel>> = _cartResult
+
+    fun getCartByTransaksiId(transaksiId : String) {
+        repository.getCartByTransaksiId(transaksiId) {
+            _cartResult.value = it
         }
     }
 }

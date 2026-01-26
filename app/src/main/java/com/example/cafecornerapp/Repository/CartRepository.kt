@@ -1,5 +1,8 @@
 package com.example.cafecornerapp.Repository
 
+import android.util.Log
+import com.example.cafecornerapp.Domain.CartModel
+import com.example.cafecornerapp.Domain.ProductModel
 import com.example.cafecornerapp.Helper.ConvertDateTime
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,6 +33,26 @@ class CartRepository {
             }
             .addOnFailureListener {
                 onResult(false)
+            }
+    }
+
+    //     get product by kategori
+    fun getCartByTransaksiId(
+        transaksiId : String,
+        callback : (List<CartModel>) -> Unit
+    ) {
+        database.collection("cart")
+            .whereEqualTo("transaksiId", transaksiId)
+            .get()
+            .addOnSuccessListener {
+                    snapshots ->
+                val list = snapshots.documents.mapNotNull { doc ->
+                    doc.toObject(CartModel::class.java)?.apply {
+                        documentId = doc.id   // 🔥 isi documentId
+                    }
+                }
+                Log.d("LISTDATA", list.toString())
+                callback(list)
             }
     }
 }
