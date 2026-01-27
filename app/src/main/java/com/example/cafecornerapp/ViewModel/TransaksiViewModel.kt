@@ -38,5 +38,17 @@ class TransaksiViewModel : ViewModel() {
         }
     }
 
+    //    Update Transaksi
+    val updateStatus = MutableLiveData<Boolean>()
 
+    fun updateTransaksi(
+        transaksiId: String,
+        totalHarga: Long,
+        catatanTambahan: String,
+        buktiTransfer: String,
+    ) {
+        repository.updateTransaksi(transaksiId, totalHarga, catatanTambahan, buktiTransfer) {
+            updateStatus.value = it
+        }
+    }
 }
