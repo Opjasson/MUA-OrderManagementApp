@@ -2,6 +2,7 @@ package com.example.cafecornerapp.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -39,28 +40,8 @@ class CartActivity : AppCompatActivity() {
             insets
         }
 
-        lifecycleScope.launch {
-            prefRepo.getTransactionId().collect {
-                viewModel.getCartByTransaksiId(it.toString())
-            }
-        }
-
-
-        binding.loadCart.visibility= View.VISIBLE
-        viewModel.cartResult.observe(this) {
-                list ->
-            viewModel.loadCartCustom(list)
-
-            viewModel.transaksiUI.observe(this) {
-                data ->
-                binding.rvCart.layoutManager= LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL, false)
-                binding.rvCart.adapter= CardProductListCartAdapter(data.toMutableList())
-                CardProductListCartAdapter(data.toMutableList()).submitList(data)
-                binding.loadCart.visibility= View.GONE
-            }
-
-        }
+        initHandleBuy()
+        initSideBar()
     }
 
     private fun initSideBar () {
@@ -99,6 +80,38 @@ class CartActivity : AppCompatActivity() {
             }
             drawerLayout.closeDrawers()
             true
+        }
+    }
+
+    private fun initHandleBuy () {
+//        get Cart by transaksi
+        lifecycleScope.launch {
+            prefRepo.getTransactionId().collect {
+                viewModel.getCartByTransaksiId(it.toString())
+            }
+        }
+
+        binding.loadCart.visibility= View.VISIBLE
+        viewModel.cartResult.observe(this) {
+                list ->
+            viewModel.loadCartCustom(list)
+
+            viewModel.transaksiUI.observe(this) {
+                    data ->
+//                Log.d("DATACARTACTI", data.toString())
+                var totalHarga = data.sumOf {
+                    item ->
+                    item.harga * item.jumlah
+                }
+
+                binding.tvTotal.text = "Rp $totalHarga"
+
+                binding.rvCart.layoutManager= LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL, false)
+                binding.rvCart.adapter= CardProductListCartAdapter(data.toMutableList())
+                CardProductListCartAdapter(data.toMutableList()).submitList(data)
+                binding.loadCart.visibility= View.GONE
+            }
         }
     }
 }

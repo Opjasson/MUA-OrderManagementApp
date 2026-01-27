@@ -89,12 +89,12 @@ val addOrUpdateStatus = MutableLiveData<Boolean>()
 
             if (existingCart != null) {
                 // ✅ sudah ada → update jumlah
-                val newQty = existingCart.jumlah + qty
+                val newQty = existingCart.jumlah + 1
                 repository.updateCartQty(existingCart.documentId!!, newQty)
             } else {
                 // ✅ belum ada → insert baru
                 repository.addCart(
-                    userId, transaksiId, productId, qty
+                    userId, transaksiId, productId, 1
                 ) {
                     addOrUpdateStatus.value = it
                 }

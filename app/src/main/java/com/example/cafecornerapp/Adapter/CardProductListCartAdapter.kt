@@ -39,7 +39,7 @@ class CardProductListCartAdapter(val items: MutableList<CartCustomModel>):
     }
 
     override fun onBindViewHolder(holder: CardProductListCartAdapter.Viewholder, position: Int) {
-        var qtyTotal : Long = holder.binding.tvQty.text.toString().toLong()
+        var qtyTotal : Long = items[position].jumlah.toLong()
         holder.binding.tvMinus.setOnClickListener {
             if (qtyTotal <= 0) {
                 qtyTotal = 0
@@ -57,6 +57,8 @@ class CardProductListCartAdapter(val items: MutableList<CartCustomModel>):
         holder.binding.tvNamaMenu.text= items[position].nama
         holder.binding.tvHarga.text="$"+items[position].harga.toString()
         holder.binding.tvKategori.text= items[position].kategori.toString()
+        holder.binding.tvQty.text= items[position].jumlah.toString()
+
 
 
         Glide.with(context).load(items[position].imgUrl).into(holder.binding.imgMenu)
@@ -68,8 +70,6 @@ class CardProductListCartAdapter(val items: MutableList<CartCustomModel>):
                 ContextCompat.startActivity(context, intent, null)
             }, 500)
         }
-
-
     }
 
     override fun getItemCount(): Int =items.size
