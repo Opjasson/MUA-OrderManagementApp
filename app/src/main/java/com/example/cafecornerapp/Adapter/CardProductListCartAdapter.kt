@@ -19,7 +19,11 @@ import com.example.cafecornerapp.databinding.ViewHolderCardcartBinding
 import com.example.cafecornerapp.databinding.ViewHolderCardproductListBinding
 
 
-class CardProductListCartAdapter(val items: MutableList<CartCustomModel>):
+class CardProductListCartAdapter(
+    private val onKurangClick: (CartCustomModel) -> Unit,
+    private val onPlusClick: (CartCustomModel) -> Unit,
+    val items: MutableList<CartCustomModel>
+):
     RecyclerView.Adapter<CardProductListCartAdapter.Viewholder>() {
     private val viewModel = CartViewModel()
     lateinit var context: Context
@@ -41,10 +45,11 @@ class CardProductListCartAdapter(val items: MutableList<CartCustomModel>):
     override fun onBindViewHolder(holder: CardProductListCartAdapter.Viewholder, position: Int) {
         var qtyTotal : Long = items[position].jumlah.toLong()
         holder.binding.tvMinus.setOnClickListener {
-            if (qtyTotal <= 0) {
-                qtyTotal = 0
+            if (qtyTotal <= 1) {
+                qtyTotal = 1
             }else {
                 qtyTotal = qtyTotal - 1
+                onKurangClick(items[position])
             }
             holder.binding.tvQty.text= qtyTotal.toString()
         }
@@ -52,6 +57,7 @@ class CardProductListCartAdapter(val items: MutableList<CartCustomModel>):
         holder.binding.tvPlus.setOnClickListener {
             qtyTotal = qtyTotal + 1
             holder.binding.tvQty.text= qtyTotal.toString()
+            onPlusClick(items[position])
         }
 
         holder.binding.tvNamaMenu.text= items[position].nama

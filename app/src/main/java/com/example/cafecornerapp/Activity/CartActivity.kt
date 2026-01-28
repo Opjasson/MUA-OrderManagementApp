@@ -128,7 +128,7 @@ class CartActivity : AppCompatActivity() {
 
             viewModel.transaksiUI.observe(this) {
                     data ->
-//                Log.d("DATACARTACTI", data.toString())
+                Log.d("DATACARTACTI", data.toString())
                 var totalHarga = data.sumOf {
                     item ->
                     item.harga * item.jumlah
@@ -141,8 +141,11 @@ class CartActivity : AppCompatActivity() {
                         binding.etNote.text.toString(),
                         imgUrl
                     )
-                }
 
+                    lifecycleScope.launch {
+                        prefRepo.clearTransactionId()
+                    }
+                }
 
                 viewModelTransaksi.updateStatus.observe(this) {
                     success ->
@@ -157,8 +160,33 @@ class CartActivity : AppCompatActivity() {
 
                 binding.rvCart.layoutManager= LinearLayoutManager(this,
                     LinearLayoutManager.VERTICAL, false)
-                binding.rvCart.adapter= CardProductListCartAdapter(data.toMutableList())
-                CardProductListCartAdapter(data.toMutableList()).submitList(data)
+                binding.rvCart.adapter= CardProductListCartAdapter(
+                    onKurangClick = {
+                            cart ->
+                        if (cart.jumlah > 1) {
+                            viewModel.minusQtyCart(cart.cartId)
+                        }
+
+                    },
+                    onPlusClick = {
+                            cart ->
+                            viewModel.addQtyCart(cart.cartId)
+                    },
+                    data.toMutableList(),
+                    )
+//                ---------------
+                CardProductListCartAdapter(
+                    onKurangClick = {
+                            cart ->
+                        if (cart.jumlah > 1) {
+                            viewModel.minusQtyCart(cart.cartId)
+                        }
+                    },
+                    onPlusClick = {
+                            cart ->
+                        viewModel.addQtyCart(cart.cartId)
+                    },
+                    data.toMutableList()).submitList(data)
                 binding.loadCart.visibility= View.GONE
             }
         }

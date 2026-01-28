@@ -48,10 +48,7 @@ class CardProductlistAdapter(
 
         holder.binding.view.setOnClickListener {
             onAddToCart(items[position].documentId)
-            Handler(Looper.getMainLooper()).postDelayed({
-                val intent = Intent(context, CartActivity::class.java)
-                ContextCompat.startActivity(context, intent, null)
-            }, 500)
+
         }
 
     }

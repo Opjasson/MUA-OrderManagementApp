@@ -59,7 +59,7 @@ class CartRepository {
             }
     }
 
-    //     get cart by cartId
+    //     get getCartByProductAndTransaction
     suspend fun getCartByProductAndTransaction(
         userId: String,
         transaksiId: String,
@@ -76,6 +76,22 @@ class CartRepository {
             ?.toObject(CartModel::class.java)
             ?.apply {
                 documentId = snapshot.documents.first().id
+            }
+    }
+
+    //     get cart tby id
+    suspend fun getCartHandleQty(
+        cartId: String,
+    ): CartModel? {
+        val snapshot = database.collection("cart")
+            .document(cartId)
+            .get()
+            .await() // query snapshoot
+
+        return snapshot
+            ?.toObject(CartModel::class.java)
+            ?.apply {
+                documentId = snapshot.id
             }
     }
 

@@ -3,6 +3,8 @@ package com.example.cafecornerapp.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -27,7 +29,9 @@ import com.example.cafecornerapp.ViewModel.ProductViewModel
 import com.example.cafecornerapp.ViewModel.TransaksiViewModel
 import com.example.cafecornerapp.ViewModel.UserViewModel
 import com.example.cafecornerapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -95,11 +99,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-
-
-
-
         var kategori : String = "makanan"
         viewModel.getProductByKategori(kategori)
 
@@ -159,12 +158,31 @@ class MainActivity : AppCompatActivity() {
                 userViewModel.userLogin.observe(this) { user ->
                     lifecycleScope.launch {
                         prefRepo.getTransactionId().collect {
-                            viewModelCart.addOrUpdateCart(
-                               userId =  user!!.documentId.toString(),
-                               transaksiId =  it.toString(),
-                               productId =  productId,
-                               qty =  1
-                            )
+
+                            if (it == null) {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        this@MainActivity,
+                                        "Buat Transaksi Dulu!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            } else {
+                                viewModelCart.addOrUpdateCart(
+                                    userId =  user!!.documentId.toString(),
+                                    transaksiId =  it.toString(),
+                                    productId =  productId,
+                                    qty =  1
+                                )
+                                withContext(Dispatchers.Main) {
+                                    Handler(Looper.getMainLooper()).postDelayed({
+                                        val intent = Intent(this@MainActivity, CartActivity::class.java)
+                                        ContextCompat.startActivity(this@MainActivity, intent, null)
+                                    }, 500)
+                                }
+
+                            }
+
                         }
                     }
 

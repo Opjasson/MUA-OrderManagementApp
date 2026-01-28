@@ -102,7 +102,47 @@ val addOrUpdateStatus = MutableLiveData<Boolean>()
         }
     }
 
-    //    Delete product
+//    Handle plus qty barang
+
+    val addQtyStatus = MutableLiveData<Boolean>()
+
+    fun addQtyCart(
+        cartId: String,
+    ) {
+        viewModelScope.launch {
+            val existingCart = repository
+                .getCartHandleQty(cartId)
+
+            if (existingCart != null) {
+                // ✅ sudah ada → update jumlah
+                val newQty = existingCart.jumlah + 1
+                repository.updateCartQty(existingCart.documentId!!, newQty)
+            }
+        }
+    }
+
+    //    Handle minus qty barang
+
+    val minusQtyStatus = MutableLiveData<Boolean>()
+
+    fun minusQtyCart(
+        cartId: String,
+    ) {
+        viewModelScope.launch {
+            val existingCart = repository
+                .getCartHandleQty(cartId)
+
+            if (existingCart != null) {
+                // ✅ sudah ada → update jumlah
+                val newQty = existingCart.jumlah - 1
+                repository.updateCartQty(existingCart.documentId!!, newQty)
+            }
+        }
+    }
+
+
+
+    //    Delete cart
     var _successDelete = MutableLiveData<Boolean>()
 
     fun deleteCart(cartId : String) {
