@@ -45,7 +45,7 @@ class CardHistoryAdapter(val items: MutableList<TransaksiWithCartModel>):
 
         holder.binding.historyView.setOnClickListener {
             val intent = Intent(context, NotaTransaksiActivity::class.java)
-//            intent.putExtra("object", items[position])
+            intent.putExtra("object", items[position])
             context.startActivity(intent)
         }
     }
