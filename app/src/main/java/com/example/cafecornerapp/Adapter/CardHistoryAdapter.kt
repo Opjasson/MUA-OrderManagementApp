@@ -34,7 +34,8 @@ class CardHistoryAdapter(val items: MutableList<TransaksiWithCartModel>):
     override fun onBindViewHolder(holder: CardHistoryAdapter.Viewholder, position: Int) {
 
         holder.binding.tvPelanggan.text= items[position].cartItems[0].username
-        holder.binding.tvIdPesanan.text= items[position].transaksiId
+        holder.binding.tvIdPesanan.text= "No : " + items[position].transaksiId
+        holder.binding.tvCatatanTxt.text= "Catatan : " + items[position].transaksi.catatanTambahan
         holder.binding.tvTotal.text= items[position].transaksi.totalHarga.toString()
         holder.binding.tvTanggal.text= items[position].transaksi.createdAt
 

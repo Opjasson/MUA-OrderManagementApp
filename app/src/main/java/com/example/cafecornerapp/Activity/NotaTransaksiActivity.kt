@@ -49,6 +49,8 @@ class NotaTransaksiActivity : AppCompatActivity() {
         binding = ActivityNotaTransaksiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        userPreference = UserPreference(this)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
